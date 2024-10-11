@@ -29,7 +29,7 @@ const Broken = () => {
             alt=""
             src={"https://avatar.vercel.sh/jane"}
           />
-          <div>
+          <div className="flex flex-col gap-2">
             <p className="font-bold md:text-xl flex md:flex-row flex-col md:items-center">
               Hi 👋🏻, I am Arpit Blagan{" "}
               <span className="text-sm text-gray-500">
@@ -50,43 +50,43 @@ const Broken = () => {
         <div className="flex items-center justify-end flex-wrap gap-5 border-b pb-2">
           <Link href="" target="_blank">
             <RiGithubFill
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <RiTwitterXFill
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <RiDiscordFill
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <RiLinkedinFill
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <TbBrandLeetcode
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <SiCodeforces
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
           <Link href="" target="_blank">
             <SiCodechef
-              className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out"
+              className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out"
               size={20}
             />
           </Link>
@@ -163,10 +163,10 @@ const Broken = () => {
                 </div>
                 <div className="flex items-center justify-end gap-2">
                   <Link href={ele.code} target="_blank">
-                    <RiCodeFill className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out" />
+                    <RiCodeFill className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out" />
                   </Link>
                   <Link href={ele.live} target="_blank">
-                    <RiExternalLinkFill className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out" />
+                    <RiExternalLinkFill className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out" />
                   </Link>
                 </div>
               </div>
