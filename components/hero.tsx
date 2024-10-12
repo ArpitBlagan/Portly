@@ -22,7 +22,7 @@ const Hero = () => {
         refresh
       />
       <motion.div
-        initial={{ opacity: 0.3, y: 80 }}
+        initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeIn", delay: 0.3, duration: 0.6 }}
       >
@@ -32,28 +32,29 @@ const Hero = () => {
       </motion.div>
       <div className="flex flex-col  md:gap-0 font-another">
         <motion.p
-          initial={{ opacity: 0.2, y: 60 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.5, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter"
+          className="text-[8vw] md:text-[6vw] font-lg text-center dark:text-gray-300 tracking-tighter"
         >
           Craft Your Portfolio in Minutes.{" "}
         </motion.p>
         <motion.p
-          initial={{ opacity: 0.1, y: 70 }}
+          initial={{ opacity: 0, y: 70 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.7, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter "
+          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter dark:text-gray-300"
         >
-          Add Info, Choose a Template, and Publish!
+          Add Info, Choose a Template and Publish!
         </motion.p>
       </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", delay: 1, duration: 0.6 }}
+        className="pt-2 border-t rounded-xl px-2"
       >
-        <p className="text-center font-semibold">
+        <p className="text-center font-semibold text-gray-600">
           Don't judge it by its name. Give it a try and you gonna love it.
         </p>
       </motion.div>

@@ -18,7 +18,7 @@ const TemplateCard = ({
   link: string;
 }) => {
   return (
-    <motion.div whileHover={{ scale: 1.02 }} className="relative">
+    <motion.div whileHover={{ scale: 1.03 }} className="relative shadow-xl">
       <div className="h-[30vh] w-full border rounded-xl">
         <Image
           src={src}

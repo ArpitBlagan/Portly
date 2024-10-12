@@ -123,7 +123,7 @@ const Broken = () => {
                       <p className="text-xl font-semibold flex items-center gap-2">
                         {ele.name}{" "}
                         <Link href={ele.link} target="_blank">
-                          <RiExternalLinkFill className="text-gray-500 hover:text-gray-100 duration-300 ease-in-out" />
+                          <RiExternalLinkFill className="text-gray-500 dark:hover:text-gray-200 hover:text-gray-700 duration-300 ease-in-out" />
                         </Link>
                       </p>
                       <p className="font-semibold text-sm dark:text-gray-300 text-start">

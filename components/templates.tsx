@@ -8,7 +8,7 @@ import ShimmerButton from "./ui/shimmer-button";
 const Templates = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-3">
-      <div className="mb-4">
+      <div className="pb-2 border-b mb-2 rounded-xl px-1">
         <p className="text-2xl font-semibold text-center">
           Explore new template designs
         </p>
@@ -26,7 +26,7 @@ const Templates = () => {
           text="Adventure"
           textType="not"
           textColor="white"
-          link="/adventrue"
+          link="/adventure"
         />
         <TemplateCard
           src={template2}

@@ -1,8 +1,10 @@
+import { m } from "framer-motion";
+
 export const projects = [
   {
     title: "Portly",
     description:
-      "A fullstack application build using Next-js, postgres, next-auth, Prisma, Shadcn-ui etc. The Project is all about how fast and easily you can build your portfolio in just three steps. Portly is deployed on ec2 using ci/cd.",
+      "A fullstack application build using Next-js, postgres, next-auth, Prisma, Shadcn-ui etc. The Project is all about how fast and easily you can build your portfolio in just three steps. Portly is deployed on ec2 using ci/cd. You can buy exclusive template (we did razorpay payment integration for this functionality)",
     code: "https://github.com/ArpitBlagan/Portly",
     live: "https://portly.arpitblagan.com",
   },
@@ -75,4 +77,44 @@ export const skills = [
   "Git",
   "Tailwind",
   "DSA",
+];
+
+export const skillsOptions = [
+  "Javascript",
+  "Typescript",
+  "React",
+  "Express",
+  "Next",
+  "Frappe",
+  "AWS",
+  "Socket",
+  "Docker",
+  "CI/CD",
+  "Nginx",
+  "Postgres",
+  "Mongodb",
+  "Prisma",
+  "Git",
+  "Tailwind",
+  "DSA",
+  "Nest",
+  "Vue",
+  "Angular",
+  "Python",
+  "Django",
+  "Flask",
+  "Java",
+  "Springboot",
+  "Tailwind",
+  "Bootstrap",
+  "GCP",
+  "WebRTC",
+  "Machine learning",
+  "AI",
+  "Gitlab",
+  "Drizzle",
+  "Mysql",
+  "Nust",
+  "Three.js",
+  "SCSS",
 ];

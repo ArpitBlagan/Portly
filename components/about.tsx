@@ -25,23 +25,23 @@ const About = () => {
 
         <div className="flex items-center gap-5 mt-5">
           <Link href="/templates">
-            <Button className="bg-white text-black hover:bg-white/50 font-semibold">
+            <Button className="bg-white text-black hover:bg-white/50 font-semibold shadow-lg">
               Get Started Now
             </Button>
           </Link>
           <Link href="https://github.com/ArpitBlagan/Portly" target="_blank">
-            <Button className="flex items-center gap-3 font-semibold bg-black text-white hover:bg-gray-700">
+            <Button className="flex items-center gap-3 font-semibold bg-black text-white hover:bg-gray-700 shadow-lg">
               Opensource
               <RiGithubFill />
             </Button>
           </Link>
         </div>
-        <div className="flex flex-col items-center gap-4 text-xl">
+        <div className="flex flex-col items-center gap-4 text-xl border-t pt-2 rounded-md px-2">
           <p className="text-black">Are you a developer?</p>
           <Link
             href="https://refnet.arpitblagan.com"
             target="_blank"
-            className="font-semibold border text-black text-sm border-zinc-300 py-2 px-4 rounded-md hover:bg-white/50 duration-300 ease-in-out"
+            className="font-semibold border text-black text-sm border-zinc-300 py-2 px-4 rounded-md hover:bg-white/50 duration-300 ease-in-out shadow-lg"
           >
             Checkout Refnet
           </Link>

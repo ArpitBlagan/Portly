@@ -7,6 +7,7 @@ import SparklesText from "./ui/sparkles-text";
 const Card = ({ ele, index }: any) => {
   return (
     <motion.div
+      whileHover={{ scale: 1.02 }}
       className="relative flex flex-col shadow-lg items-center justify-center  px-5  py-10 rounded-3xl border gap-2"
       key={index}
       initial={{ opacity: 0, y: 50 }}
@@ -18,14 +19,19 @@ const Card = ({ ele, index }: any) => {
         ease: "easeInOut",
       }}
     >
-      <BorderBeam size={250} duration={12} delay={9} />
+      <BorderBeam
+        className="hidden md:block"
+        size={250}
+        duration={12}
+        delay={9}
+      />
       <motion.div className="flex flex-col items-center gap-4 relative">
         <SparklesText
           className=" font-another text-3xl tracking-tighter font-medium mb-5"
           text={ele.title}
         />
 
-        <p className="font-another text-base font-medium  mb-4 relative z-50 text-gray-600">
+        <p className="font-another text-base font-medium  mb-4 relative z-50 text-gray-600 tracking-tighter">
           {ele.description}
         </p>
 
