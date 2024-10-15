@@ -6,16 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { skillsOptions } from "@/constant";
 import { Select } from "@/components/ui/select";
-import {
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@radix-ui/react-select";
-import { Button } from "react-day-picker";
-import { RiArrowDownSFill, RiDropFill } from "@remixicon/react";
+
+import { RiArrowDownSFill } from "@remixicon/react";
+import MultiSelect from "@/components/multi-select";
+import { Button } from "@/components/ui/button";
 
 const page = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -32,7 +26,10 @@ const page = () => {
         </p>
       </div>
       <div className="flex items-center justify-center my-5 ">
-        <form className="w-full md:w-1/2 grid md:grid-cols-2 gap-2 border rounded-xl p-3 bg-white/10 relative">
+        <form
+          className="w-full md:w-1/2 grid md:grid-cols-2 gap-2 border rounded-xl p-3 
+        bg-white/10 relative"
+        >
           <BorderBeam
             className="hidden md:block"
             size={250}
@@ -140,27 +137,11 @@ const page = () => {
               })}
             </div>
             <div className=" flex items-center justify-center cols-span-2  ">
-              <Select>
-                <SelectTrigger className=" flex items-center justify-end border p-2">
-                  <div>
-                    <SelectValue placeholder="Select skills" />
-                  </div>
-                  <RiArrowDownSFill />
-                </SelectTrigger>
-                <SelectContent className="bg-background py-2 px-4 h-[350px] overflow-hidden overflow-y-scroll">
-                  {skillsOptions.map((ele, index) => {
-                    return (
-                      <SelectItem
-                        value={ele}
-                        key={index}
-                        className="font-another"
-                      >
-                        {ele}
-                      </SelectItem>
-                    );
-                  })}
-                </SelectContent>
-              </Select>
+              <MultiSelect
+                options={skillsOptions}
+                selectedValues={selectedOptions}
+                setSelectedValues={setSelectedOptions}
+              />
             </div>
           </div>
           <div className="col-span-2">
@@ -330,6 +311,9 @@ const page = () => {
               placeholder="Related website link"
               className="font-another dark:border-zinc-600"
             />
+          </div>
+          <div className=" col-span-2  flex items-center justify-end mt-4">
+            <Button className="bg-green-500 hover:bg-green-600">Save</Button>
           </div>
         </form>
       </div>

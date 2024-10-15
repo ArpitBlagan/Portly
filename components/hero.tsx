@@ -13,7 +13,7 @@ const Hero = () => {
     setColor(theme === "dark" ? "#ffffff" : "#000000");
   }, [theme]);
   return (
-    <div className="h-[70vh] md:h-[90vh] flex flex-col items-center relative justify-center gap-5">
+    <div className=" h-[70vh] md:h-[90vh] flex flex-col items-center relative justify-center gap-5">
       <Particles
         className="absolute inset-0"
         quantity={100}
@@ -35,7 +35,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.5, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center dark:text-gray-300 tracking-tighter"
+          className="text-[8vw] md:text-[6vw] font-lg text-center dark:text-gray-300 tracking-tighter "
         >
           Craft Your Portfolio in Minutes.{" "}
         </motion.p>
@@ -43,7 +43,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 70 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.7, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter dark:text-gray-300"
+          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter dark:text-gray-300 "
         >
           Add Info, Choose a Template and Publish!
         </motion.p>
