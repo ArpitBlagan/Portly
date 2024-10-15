@@ -8,15 +8,30 @@ import Particles from "@/components/ui/particles";
 import { useTheme } from "next-themes";
 import SparklesText from "@/components/ui/sparkles-text";
 import { RiCloseLine, RiGithubFill } from "@remixicon/react";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+const signupSchema = z.object({
+  name: z.string().min(5, "Name should be atleast have 5 character"),
+  email: z.string().email("Please provide valid and active email address."),
+  password: z.string().min(6, "Password should be atleast 6 characters long."),
+});
+type signup = z.infer<typeof signupSchema>;
+import { SubmitHandler, useForm } from "react-hook-form";
 export type MediaFile = {
   file: File;
   preview: string;
   type: string;
 };
+
 const page = () => {
   const { theme } = useTheme();
   const [color, setColor] = useState("#ffffff");
   const [mediaFile, setMediaFile] = useState<MediaFile | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signup>({ resolver: zodResolver(signupSchema) });
 
   const handleMediaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -36,6 +51,7 @@ const page = () => {
   useEffect(() => {
     setColor(theme === "dark" ? "#ffffff" : "#000000");
   }, [theme]);
+  const onSubmit: SubmitHandler<signup> = async (data) => {};
   return (
     <div className="h-screen flex items-center ">
       <div className="w-[400px] h-full hidden md:block relative">
@@ -60,7 +76,10 @@ const page = () => {
           color={color}
           refresh
         />
-        <form className="relative flex flex-col font-another gap-4  lg:w-1/2 w-full  p-10 md:m-0 mx-4 rounded-xl">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="relative flex flex-col font-another gap-4  lg:w-1/2 w-full  p-10 md:m-0 mx-4 rounded-xl"
+        >
           <BorderBeam duration={30} />
           <div className="border-b pb-3 flex flex-col gap-2">
             <SparklesText
@@ -97,15 +116,42 @@ const page = () => {
           </div>
           <div className="flex flex-col gap-2">
             <label>Username</label>
-            <Input placeholder="Enter your username" className="h-[50px]" />
+            <Input
+              placeholder="Enter your username"
+              className="h-[50px]"
+              {...register("name")}
+            />
+            {errors.name && (
+              <span className="text-red-500 text-sm">
+                {errors.name.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label>Email</label>
-            <Input placeholder="Enter your email" className="h-[50px]" />
+            <Input
+              placeholder="Enter your email"
+              className="h-[50px]"
+              {...register("email")}
+            />
+            {errors.email && (
+              <span className="text-red-500 text-sm">
+                {errors.email.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col gap-2 border-b pb-4">
             <label>Password</label>
-            <Input placeholder="Enter your password" className="h-[50px]" />
+            <Input
+              placeholder="Enter your password"
+              className="h-[50px]"
+              {...register("password")}
+            />
+            {errors.password && (
+              <span className="text-red-500 text-sm">
+                {errors.password.message}
+              </span>
+            )}
           </div>
           <Button className="bg-green-600 hover:bg-green-700">Sign up</Button>
           <Button className=" border ">
