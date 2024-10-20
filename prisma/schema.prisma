@@ -19,13 +19,41 @@ model User{
   name String
   email String
   password String?
-  github_url String?
+  github_token String?
   image String?
   forms Formdata[]
-  templates String[] @default(["broken","adventure","twisted"])
+  liked Like[]
+  ports Port[]
 }
 
+model Port{
+  id  String @id @default(uuid())
+  templateId String
+  template Template @relation(fields: [templateId],references: [id])
+  userId String
+  user User @relation(fields: [userId],references: [id])
+}
 
+model Template{
+  id String @id @default(uuid())
+  by String
+  type Type
+  name String
+  cover_image String
+  description String
+  addedAt DateTime @default(now())
+  views Int
+  prots Port[]
+  likes Like[]
+}
+
+model Like{
+  id String @id @default(uuid())
+  templateId String
+  template Template @relation(fields: [templateId],references: [id])
+  userId String
+  user User @relation(fields: [userId],references: [id])
+}
 
 model Formdata{
   id String @id @default(uuid())
@@ -44,3 +72,8 @@ model Formdata{
   experiences Json[]
 }
 
+
+enum Type{
+  FREE
+  PREMIUM
+}

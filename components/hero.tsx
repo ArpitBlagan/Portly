@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { RainbowButton } from "./ui/rainbow-button";
+import { BorderBeam } from "./ui/border-beam";
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -65,8 +66,14 @@ const Hero = () => {
         transition={{ ease: "backIn", delay: 0.6, duration: 0.6 }}
         className=" md:block z-99  hidden h-[90vh] w-full flex  items-center justify-center rounded-xl  relative   mb-5"
       >
-        <div className="h-full  w-full flex items-center justify-center ">
-          <div className="h-[90%] bg-red-700 w-[90%]">
+        <div className="h-full flex items-center justify-center rounded-xl border border-[1px] shodow-lg">
+          <BorderBeam
+            className="hidden md:block"
+            size={340}
+            delay={5}
+            duration={130}
+          />
+          <div className="h-[90%] w-[90%] relative border border-[3px] rounded-xl ">
             <Image
               src={"https://startup-template-sage.vercel.app/hero-dark.png"}
               alt="background image"

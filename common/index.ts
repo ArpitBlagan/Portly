@@ -7,3 +7,14 @@ export const s3 = new S3Client({
     secretAccessKey: process.env.NEXT_AWS_S3_SECRET_KEY as string,
   },
 });
+
+export const extractDataFromData = (formdata: FormData) => {
+  const data: any = {};
+
+  formdata.forEach((value, key) => {
+    console.log(key, value);
+    data.key = value;
+  });
+
+  return data;
+};
