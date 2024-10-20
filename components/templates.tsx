@@ -11,7 +11,7 @@ const Templates = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div className="pb-2 border-b mb-4 rounded-xl px-1">
-        <p className="text-2xl font-medium text-center">
+        <p className="md:text-2xl font-medium text-center">
           Explore new template designs
         </p>
       </div>

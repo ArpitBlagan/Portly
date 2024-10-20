@@ -4,7 +4,8 @@ import { ShootingStars } from "./ui/shooting-stars";
 import Particles from "./ui/particles";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { BorderBeam } from "./ui/border-beam";
+import Image from "next/image";
+import { RainbowButton } from "./ui/rainbow-button";
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -14,7 +15,7 @@ const Hero = () => {
     setColor(theme === "dark" ? "#ffffff" : "#000000");
   }, [theme]);
   return (
-    <div className=" h-[70vh] md:h-[90vh] flex flex-col items-center relative justify-center gap-5">
+    <div className="w-full flex flex-col items-center justify-center relative justify-center gap-5">
       <Particles
         className="absolute inset-0"
         quantity={100}
@@ -26,40 +27,59 @@ const Hero = () => {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeIn", delay: 0.3, duration: 0.6 }}
-        className="border rounded-md"
+        className=" mt-10"
       >
-        <BorderBeam />
-        <p className="py-2 px-4  bg-yellow-200 z-0 rounded-md  text-center font-medium text-black tracking-tight">
+        <RainbowButton className="text-[10px] md:text-lg">
           Easiest way to build your portfolio and share with other.
-        </p>
+        </RainbowButton>
       </motion.div>
-      <div className="flex flex-col  md:gap-0 font-another">
+      <div className="flex font-another h-[35vh] items-center jusitfy-center mb-10">
         <motion.p
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.5, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-medium text-center dark:text-gray-300 tracking-tighter "
+          className={`text-[8vw] md:text-[6vw]  text-center tracking-tighter leading-[1] 
+            bg-gradient-to-r
+              dark:from-gray-100 to-transparent
+                from-black to-transparent
+            bg-clip-text text-transparent`}
         >
-          Craft Your Portfolio in Minutes.{" "}
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 70 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: "easeIn", delay: 0.7, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-medium text-center tracking-tighter dark:text-gray-300 "
-        >
+          Craft Your Portfolio in Minutes.
+          <br />
           Add Info, Choose a Template and Publish!
         </motion.p>
       </div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", delay: 1, duration: 0.6 }}
+      {/* <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: "backIn", delay: 0.7, duration: 0.6 }}
         className="pt-2 border-t rounded-xl px-2"
       >
         <p className="text-center font-medium text-gray-600">
           Don't judge it by its name. Give it a try and you gonna love it.
         </p>
+      </motion.div> */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: "backIn", delay: 0.6, duration: 0.6 }}
+        className=" md:block z-99  hidden h-[90vh] w-full flex  items-center justify-center rounded-xl  relative   mb-5"
+      >
+        <div className="h-full  w-full flex items-center justify-center ">
+          <div className="h-[90%] bg-red-700 w-[90%]">
+            <Image
+              src={"https://startup-template-sage.vercel.app/hero-dark.png"}
+              alt="background image"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        </div>
+        <div
+          className={`absolute inset-0 bg-gradient-to-b
+            dark:from-transparent dark:to-black from-transparent to-gray-300
+          opacity-100`}
+        ></div>
       </motion.div>
       <ShootingStars />
     </div>
