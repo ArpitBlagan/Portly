@@ -28,10 +28,11 @@ model User{
 
 model Port{
   id  String @id @default(uuid())
-  templateId String
+  templateId String 
   template Template @relation(fields: [templateId],references: [id])
-  userId String
+  userId String 
   user User @relation(fields: [userId],references: [id])
+  @@unique([userId, templateId])
 }
 
 model Template{
@@ -73,7 +74,7 @@ model Formdata{
 }
 
 
-enum Type{
+ enum Type{
   FREE
   PREMIUM
 }

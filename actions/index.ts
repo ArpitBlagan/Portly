@@ -3,9 +3,10 @@ import { Bucket, extractDataFromData, s3 } from "@/common";
 import prisma from "@/db";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import bcrypt from "bcryptjs";
+import { EnumValues } from "zod";
 
 export const registerUser = async (formData: FormData) => {
-  const email = formData.get("email");
+  const email: any = formData.get("email");
   const password: any = formData.get("password");
   const name = formData.get("name");
   const file: any = formData.get("file");
@@ -43,12 +44,15 @@ export const registerUser = async (formData: FormData) => {
     return { error: "not able to register user." };
   }
 };
-
+enum Type {
+  FREE,
+  PREMIUM,
+}
 export const registerTemplate = async (formdata: FormData) => {
-  const name = formdata.get("name");
-  const description = formdata.get("email");
+  const name: any = formdata.get("name");
+  const description: any = formdata.get("email");
   const file: any = formdata.get("file");
-  const type = formdata.get("type");
+  const type: any = formdata.get("type");
   try {
     const Body = (await file.arrayBuffer()) as Buffer;
     const key = `${file.name}`;
@@ -61,11 +65,12 @@ export const registerTemplate = async (formdata: FormData) => {
 
     await prisma.template.create({
       data: {
-        name,
-        description,
-        coverImage: url,
+        name: name as string,
+        description: description as string,
+        cover_image: url,
         by: "Arpit Blagan",
-        type,
+        type: type,
+        views: 0,
       },
     });
     return { message: "template registered successfully." };
@@ -85,7 +90,12 @@ export const getTemplates = async () => {
 
 export const addPorts = async (userId: string, templateId: string) => {
   try {
-    const port = prisma.port.findOne({ where: { userId } });
+    const port = await prisma.port.findUnique({
+      where: {
+        //@ts-ignore
+        userId_templateId: { userId, templateId },
+      },
+    });
     if (port) {
       return { error: "there was already a port with this template." };
     }
@@ -103,7 +113,7 @@ export const addPorts = async (userId: string, templateId: string) => {
 
 export const getPorts = async (userId: string) => {
   try {
-    const data = await prisma.port.find({ where: { id: userId } });
+    const data = await prisma.port.findMany({ where: { id: userId } });
     return { message: "successfully fetched", data };
   } catch (err) {
     return { error: "not able to get ports related to you" };
@@ -112,11 +122,11 @@ export const getPorts = async (userId: string) => {
 
 export const getFormData = async (userId: string) => {
   try {
-    const user = await prisma.user.findOne({ where: { id: userId } });
+    const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user) {
       return { error: "First register yourself on the site" };
     }
-    const data = await prisma.formdata.findOne({ where: { userId } });
+    const data = await prisma.formdata.findUnique({ where: { userId } });
     return { message: "successfully fetched", data };
   } catch (err) {
     return {
@@ -139,12 +149,11 @@ export const submitFormdata = async (formdata: FormData) => {
     };
   }
 };
-export const updateFormdata = async (formdata: FormData) => {
+export const updateFormdata = async (formdata: FormData, userId: string) => {
   const data = extractDataFromData(formdata);
+
   try {
-    await prisma.formdata.update({
-      data,
-    });
+    await prisma.formdata.update({ where: { userId }, data });
     return { message: "update successfully congratulation" };
   } catch (err) {
     return {

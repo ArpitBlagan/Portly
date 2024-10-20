@@ -13,7 +13,7 @@ export const extractDataFromData = (formdata: FormData) => {
 
   formdata.forEach((value, key) => {
     console.log(key, value);
-    data.key = value;
+    data.key = value as string;
   });
 
   return data;
