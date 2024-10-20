@@ -8,7 +8,7 @@ import SparklesText from "@/components/ui/sparkles-text";
 import Particles from "@/components/ui/particles";
 import { useTheme } from "next-themes";
 import { signIn } from "next-auth/react";
-import { RiGithubFill } from "@remixicon/react";
+import { RiEyeCloseFill, RiEyeFill, RiGithubFill } from "@remixicon/react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,6 +20,8 @@ type signin = z.infer<typeof signinSchema>;
 const page = () => {
   const { theme } = useTheme();
   const [color, setColor] = useState("#ffffff");
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState("show");
   const {
     register,
     handleSubmit,
@@ -34,7 +36,10 @@ const page = () => {
   useEffect(() => {
     setColor(theme === "dark" ? "#ffffff" : "#000000");
   }, [theme]);
-  const onSubmit = async (data: { email: string; password: string }) => {
+  const onSubmit: SubmitHandler<signin> = async (data: {
+    email: string;
+    password: string;
+  }) => {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
@@ -93,11 +98,33 @@ const page = () => {
           </div>
           <div className="flex flex-col gap-2 border-b pb-4">
             <label>Password</label>
-            <Input
-              placeholder="Enter your password"
-              className="h-[50px]"
-              {...register("password")}
-            />
+            <div className="flex relative h-[50px] ">
+              <Input
+                placeholder="Enter your password"
+                type={type}
+                className="h-full w-full"
+                {...register("password")}
+              />
+              <div className="absolute px-2 right-0 top-50% transform translate-y-[50%]">
+                {icon == "show" ? (
+                  <RiEyeFill
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setIcon("close");
+                      setType("text");
+                    }}
+                  />
+                ) : (
+                  <RiEyeCloseFill
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setIcon("show");
+                      setType("password");
+                    }}
+                  />
+                )}
+              </div>
+            </div>
             {errors.password && (
               <span className="text-red-500 text-sm">
                 {errors.password.message}

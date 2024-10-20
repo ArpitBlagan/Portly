@@ -19,7 +19,7 @@ const About = () => {
     >
       <div className="flex flex-col items-center px-2 justify-center gap-4  w-full h-full ">
         <div className="flex flex-col gap-3">
-          <p className="text-center text-[8vw] md:text-[4vw] text-black font-bold leading-[0.6]">
+          <p className="text-center text-[8vw] md:text-[4vw] text-black font-semibold tracking-tight leading-[0.6]">
             Build a New Portfolio
           </p>
           <p className="text-sm text-gray-600 text-center">

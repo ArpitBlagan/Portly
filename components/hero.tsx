@@ -4,6 +4,7 @@ import { ShootingStars } from "./ui/shooting-stars";
 import Particles from "./ui/particles";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { BorderBeam } from "./ui/border-beam";
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -25,8 +26,10 @@ const Hero = () => {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeIn", delay: 0.3, duration: 0.6 }}
+        className="border rounded-md"
       >
-        <p className="py-2 px-4 bg-yellow-400 z-0 rounded-md text-center font-semibold text-black tracking-tight">
+        <BorderBeam />
+        <p className="py-2 px-4  bg-yellow-200 z-0 rounded-md  text-center font-medium text-black tracking-tight">
           Easiest way to build your portfolio and share with other.
         </p>
       </motion.div>
@@ -35,7 +38,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.5, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center dark:text-gray-300 tracking-tighter "
+          className="text-[8vw] md:text-[6vw] font-medium text-center dark:text-gray-300 tracking-tighter "
         >
           Craft Your Portfolio in Minutes.{" "}
         </motion.p>
@@ -43,7 +46,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 70 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeIn", delay: 0.7, duration: 0.4 }}
-          className="text-[8vw] md:text-[6vw] font-lg text-center tracking-tighter dark:text-gray-300 "
+          className="text-[8vw] md:text-[6vw] font-medium text-center tracking-tighter dark:text-gray-300 "
         >
           Add Info, Choose a Template and Publish!
         </motion.p>
@@ -54,7 +57,7 @@ const Hero = () => {
         transition={{ ease: "backIn", delay: 1, duration: 0.6 }}
         className="pt-2 border-t rounded-xl px-2"
       >
-        <p className="text-center font-semibold text-gray-600">
+        <p className="text-center font-medium text-gray-600">
           Don't judge it by its name. Give it a try and you gonna love it.
         </p>
       </motion.div>
