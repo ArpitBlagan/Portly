@@ -5,6 +5,7 @@ const nextConfig = {
       "avatar.vercel.sh",
       "avatars.githubusercontent.com",
       "startup-template-sage.vercel.app",
+      "d3e230op9b6du5.cloudfront.net",
     ],
   },
 };

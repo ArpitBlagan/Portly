@@ -17,7 +17,7 @@ export const registerUser = async (formData: FormData) => {
   if (user) {
     return { error: "This email is already registered:(" };
   }
-  const hash = bcrypt.hash(password, 10);
+  const hash = await bcrypt.hash(password, 10);
   const data: any = {
     name,
     email,
@@ -41,6 +41,7 @@ export const registerUser = async (formData: FormData) => {
     });
     return { message: "user signuped successfully :)" };
   } catch (err) {
+    console.log(err);
     return { error: "not able to register user." };
   }
 };
@@ -88,7 +89,7 @@ export const getTemplates = async () => {
   }
 };
 
-export const addPorts = async (userId: string, templateId: string) => {
+export const addPort = async (userId: string, templateId: string) => {
   try {
     const port = await prisma.port.findUnique({
       where: {

@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { RainbowButton } from "./ui/rainbow-button";
 import { BorderBeam } from "./ui/border-beam";
+import Link from "next/link";
+import { RiArrowRightLine } from "@remixicon/react";
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -25,23 +27,24 @@ const Hero = () => {
         refresh
       />
       <motion.div
-        initial={{ opacity: 0, y: 80 }}
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ease: "easeIn", delay: 0.3, duration: 0.6 }}
-        className=" mt-10"
+        transition={{ ease: "easeIn", delay: 0.3, duration: 0.5 }}
+        className=" my-10"
       >
         <RainbowButton className="text-[10px] md:text-lg">
           Easiest way to build your portfolio and share with other.
         </RainbowButton>
       </motion.div>
-      <div className="flex font-another h-[35vh] items-center jusitfy-center mb-10">
+      <div className="flex font-another h-[35vh] flex-col gap-2 items-center jusitfy-center mb-10 md:mb-20">
         <motion.p
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: "easeIn", delay: 0.5, duration: 0.4 }}
-          className={`text-[8vw] md:text-[6vw]  text-center tracking-tighter leading-[1] 
+          transition={{ ease: "easeIn", delay: 0.3, duration: 0.5 }}
+          className={`text-[8vw] md:text-[6vw]  text-center tracking-tighter leading-[1]
+              
             bg-gradient-to-r
-              dark:from-gray-100 to-transparent
+              dark:from-white to-transparent
                 from-black to-transparent
             bg-clip-text text-transparent`}
         >
@@ -61,9 +64,9 @@ const Hero = () => {
         </p>
       </motion.div> */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ease: "backIn", delay: 0.6, duration: 0.6 }}
+        transition={{ ease: "backIn", delay: 0.3, duration: 0.6 }}
         className=" md:block z-99  hidden h-[90vh] w-full flex  items-center justify-center rounded-xl  relative   mb-5"
       >
         <div className="h-full flex items-center justify-center rounded-xl border border-[1px] shodow-lg">
@@ -73,13 +76,22 @@ const Hero = () => {
             delay={5}
             duration={130}
           />
-          <div className="h-[90%] w-[90%] relative border border-[3px] rounded-xl ">
-            <Image
-              src={"https://startup-template-sage.vercel.app/hero-dark.png"}
-              alt="background image"
-              layout="fill"
-              objectFit="contain"
-            />
+          <div className="h-[90%] w-[90%] relative border border-[1px] rounded-xl ">
+            {theme == "dark" ? (
+              <Image
+                src={"https://startup-template-sage.vercel.app/hero-dark.png"}
+                alt="background image"
+                layout="fill"
+                objectFit="contain"
+              />
+            ) : (
+              <Image
+                src={"https://startup-template-sage.vercel.app/hero-light.png"}
+                alt="background image"
+                layout="fill"
+                objectFit="contain"
+              />
+            )}
           </div>
         </div>
         <div

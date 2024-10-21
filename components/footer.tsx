@@ -9,7 +9,7 @@ import { ModeToggle } from "./mode-toggle";
 
 const Footer = () => {
   return (
-    <div className="mx-10 min-h-[15vh] flex flex-col items-around py-5 gap-4 overflow-hidden border-t border-b pb-2  mb-4">
+    <div className="mx-10 min-h-[15vh] flex flex-col items-around py-5 gap-4 overflow-hidden border-t border-b   mb-4">
       <div className="flex-1 flex items-center justify-between flex-wrap">
         <div>
           <p className="text-2xl font-another font-semibold">पोर्टली 🇮🇳</p>

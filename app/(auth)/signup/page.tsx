@@ -89,7 +89,7 @@ const page = () => {
         loading: "Loading...",
         success: (res) => {
           setLoading(false);
-          router.push("/signin");
+          router.push("/login");
           return `${res.message}`;
         },
         error: (error) => {

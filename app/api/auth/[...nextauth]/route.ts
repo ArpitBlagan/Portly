@@ -20,7 +20,7 @@ export const authOptions = {
         //@ts-ignore
         const email = credentials?.email;
         const password = credentials?.password;
-        const user = await prisma.user.findUnique({ where: { email } });
+        const user = await prisma.user.findFirst({ where: { email } });
         if (
           user &&
           password &&
@@ -34,7 +34,7 @@ export const authOptions = {
             id: user.id,
             name: user.name,
             email: user.email,
-            profileImage: user.profileImage,
+            profileImage: user.image,
             token,
           };
         }
@@ -50,7 +50,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile }: any) {
       if (account.provider == "github") {
-        const uu = await prisma.user.findUnique({
+        const uu = await prisma.user.findFirst({
           where: { email: user.email },
         });
         if (uu) {
@@ -71,10 +71,8 @@ export const authOptions = {
             id: user.id,
             name: user.name,
             email: user.email,
-            profileImage: user.image,
-            githubLink: profile.html_url,
-            githubId: user.id,
-            accessTokem: account.access_token,
+            image: user.image,
+            github_token: profile.html_url,
           },
         });
         const token = jwt.sign(
@@ -93,6 +91,7 @@ export const authOptions = {
       }
     },
     jwt: async ({ user, token }: any) => {
+      console.log("jwt", user, token);
       if (user) {
         token.uid = user.id;
         token.jwtToken = user.token;
@@ -101,6 +100,7 @@ export const authOptions = {
       return token;
     },
     session: async ({ session, token }: any) => {
+      console.log("session", session, token);
       if (session?.user) {
         session.user.id = token.uid;
         session.user.jwtToken = token.jwtToken;

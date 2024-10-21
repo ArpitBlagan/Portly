@@ -12,12 +12,15 @@ import { RiEyeCloseFill, RiEyeFill, RiGithubFill } from "@remixicon/react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 const signinSchema = z.object({
   email: z.string().email("Please provide valid email address."),
   password: z.string().min(6, "Password should be atleast 6 characters long."),
 });
 type signin = z.infer<typeof signinSchema>;
 const page = () => {
+  const router = useRouter();
   const { theme } = useTheme();
   const [color, setColor] = useState("#ffffff");
   const [type, setType] = useState("password");
@@ -33,6 +36,7 @@ const page = () => {
     // },
     resolver: zodResolver(signinSchema),
   });
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setColor(theme === "dark" ? "#ffffff" : "#000000");
   }, [theme]);
@@ -40,11 +44,30 @@ const page = () => {
     email: string;
     password: string;
   }) => {
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+    toast.promise(
+      async () => {
+        setLoading(true);
+        const res = await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        });
+
+        return res;
+      },
+      {
+        loading: "Loading...",
+        success: () => {
+          setLoading(false);
+          router.push("/");
+          return "Signin successfully 😁.";
+        },
+        error: () => {
+          setLoading(false);
+          return "Signin falied pleaes check your email & password combination and try again later ❌.";
+        },
+      }
+    );
   };
   return (
     <div className="h-screen flex items-center ">
@@ -131,11 +154,16 @@ const page = () => {
               </span>
             )}
           </div>
-          <Button className="bg-green-600 hover:bg-green-700" type="submit">
+          <Button
+            className="bg-green-600 hover:bg-green-700"
+            disabled={loading}
+            type="submit"
+          >
             Log in
           </Button>
           <Button
             className=" border "
+            disabled={loading}
             onClick={async (e) => {
               e.preventDefault();
 

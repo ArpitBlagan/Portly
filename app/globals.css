@@ -127,3 +127,17 @@ body {
   background-repeat: no-repeat;
   background-color: orange;
 }
+
+@keyframes shining {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shining {
+  background-size: 300% 100%;
+  animation: shining 3s linear infinite;
+}
