@@ -1,12 +1,12 @@
-import { getPorts } from "@/actions";
+import { getTemplates } from "@/actions";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import AddPortfolio from "@/components/add-portfolio";
+import AddTemplate from "@/components/add-template";
 import { getServerSession } from "next-auth";
 
-const Ports = async () => {
+const Page = async () => {
+  const templates = await getTemplates();
   const session = await getServerSession(authOptions);
-  const ports = await getPorts(session.user.id);
-  if (ports.error) {
+  if (templates.error) {
     return (
       <div className="main_wrapper">
         <div className="main">
@@ -75,42 +75,33 @@ C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.
         </div>
       </div>
     );
-  } else {
-    return (
-      <div className="h-screen mx-5 ">
-        <div className="flex md:items-center items-end md:justify-between md:flex-row flex-col">
-          <div className=" flex flex-col gap-2 my-2  md:mx-10">
-            <p className="font-another text-3xl tracking-tighter font-medium">
-              Ports
-            </p>
-            <p className="font-another font-gray-600">
-              Ports are refered to the number of different portfolios you have
-              created using our different templates.
-            </p>
-          </div>
-          <AddPortfolio />
-        </div>
-        <div className="grid gap-2 md:grid-cols-3">
-          {ports.data &&
-            ports.data.map((ele, index) => {
-              return <div></div>;
-            })}
-        </div>
-        {ports.data && ports.data.length == 0 ? (
-          <div className="flex flex-col items-center justify-center h-[60vh]">
-            <p className="text-center font-medium text-2xl font-another text-gray-400">
-              No Ports Found...
-            </p>
-            <p className="font-another text-gray-500">
-              Add your first port by clicking on the add button, select template
-              and create
-            </p>
-          </div>
-        ) : (
-          <p className="text-center text-gray-500">That's it...</p>
-        )}
-      </div>
-    );
   }
+  return (
+    <div className="h-screen mx-5">
+      <div className="flex md:items-center items-end md:justify-between md:flex-row flex-col">
+        <div className=" flex flex-col gap-2 my-2  md:mx-10">
+          <p className="font-another text-3xl tracking-tighter font-medium">
+            Templates
+          </p>
+          <p className="font-another font-gray-600">
+            Right now only Arpit can add new templates
+          </p>
+        </div>
+        {session.user.name == "Arpit Blagan" && <AddTemplate />}
+      </div>
+      {templates.data && templates.data.length == 0 ? (
+        <div className="flex flex-col items-center justify-center h-[60vh]">
+          <p className="text-center font-medium text-2xl font-another text-gray-400">
+            No Template Found...
+          </p>
+          <p className="font-another text-gray-500">
+            Wait for Arpit to add new templates
+          </p>
+        </div>
+      ) : (
+        <p className="text-center text-gray-500">That's it...</p>
+      )}
+    </div>
+  );
 };
-export default Ports;
+export default Page;

@@ -17,6 +17,7 @@ const Footer = () => {
         </div>
         <div>
           <div className="flex items-center md:justify-end gap-5">
+            <ModeToggle />
             <Link href="https://github.com/ArpitBlagan/Portly">
               <RiGithubFill
                 size={30}
@@ -35,7 +36,6 @@ const Footer = () => {
                 className="hover:text-gray-500 duration-300 ease-in-out"
               />
             </Link>
-            <ModeToggle />
           </div>
           <p className="text-sm text-gray-500">
             Follow and if you like Portly consider giving a ⭐️ on{" "}

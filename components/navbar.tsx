@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 const Navbar = () => {
   const { data: session, status } = useSession();
   console.log("dafd", session, status);
@@ -31,6 +32,7 @@ const Navbar = () => {
     };
     getStars();
   }, []);
+  const pathname = usePathname();
   return (
     <div className="flex items-center justify-around mx-10 mt-5 py-5 px-3 border-b">
       <div className="">
@@ -45,13 +47,17 @@ const Navbar = () => {
       <div className="hidden md:flex flex-1  items-center justify-center gap-5 font-semibold">
         <Link
           href="/templates"
-          className="hover:text-gray-500 duration-300 ease-in-out"
+          className={` duration-300 ease-in-out hover:text-gray-500 ${
+            pathname == "/templates" ? "underline font-bold" : ""
+          }`}
         >
           Templates
         </Link>
         <Link
           href="/ports"
-          className="hover:text-gray-500 duration-300 ease-in-out"
+          className={` duration-300 ease-in-out hover:text-gray-500 ${
+            pathname == "/ports" ? "underline font-bold" : ""
+          }`}
         >
           Ports
         </Link>
